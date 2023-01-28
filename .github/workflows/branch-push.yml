@@ -22,8 +22,9 @@ jobs:
         with:
           node_version: ${{ matrix.node_version }}
 
-      - name: run CI
+      - name: run unit test
         run: |
+          yarn global add react-scripts
           yarn install
           yarn lint
           yarn test
