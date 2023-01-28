@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches-ignore:
+      - master
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node_version: [18.x]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node_version }}
+        uses: actions/setup-node@v1
+        with:
+          node_version: ${{ matrix.node_version }}
+
+      - name: run CI
+        run: |
+          yarn install
+          yarn lint
+          yarn test
+          yarn build
