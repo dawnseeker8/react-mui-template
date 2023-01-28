@@ -3,7 +3,7 @@ name: CI
 on:
   push:
     branches-ignore:
-      - master
+      - main
   workflow_dispatch:
 
 jobs:
@@ -15,15 +15,17 @@ jobs:
         node_version: [18.x]
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Copy repository
+        uses: actions/checkout@v2
 
-      - name: Use Node.js ${{ matrix.node_version }}
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
-          node_version: ${{ matrix.node_version }}
+          node-version: ${{ matrix.node-version }}
 
-      - name: run CI
+      - name: Run unit tests
         run: |
+          yarn global add react-scripts
           yarn install
           yarn lint
           yarn test
