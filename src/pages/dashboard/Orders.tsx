@@ -8,16 +8,16 @@ import TableRow from "@mui/material/TableRow";
 import Title from "./Title";
 
 // Generate Order Data
-function createData(
+const createData = (
   id: number,
   date: string,
   name: string,
   shipTo: string,
   paymentMethod: string,
   amount: number
-) {
+) => {
   return { id, date, name, shipTo, paymentMethod, amount };
-}
+};
 
 const rows = [
   createData(
@@ -62,11 +62,11 @@ const rows = [
   ),
 ];
 
-function preventDefault(event: React.MouseEvent) {
+const preventDefault = (event: React.MouseEvent) => {
   event.preventDefault();
-}
+};
 
-export default function Orders() {
+const Orders = () => {
   return (
     <React.Fragment>
       <Title>Recent Orders</Title>
@@ -97,4 +97,6 @@ export default function Orders() {
       </Link>
     </React.Fragment>
   );
-}
+};
+
+export default Orders;

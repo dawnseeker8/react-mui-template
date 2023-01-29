@@ -1,34 +1,30 @@
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import * as React from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RouterProvider } from "react-router-dom";
 import "./App.css";
-import Callback from "./components/Callback";
-import Dashboard from "./pages/dashboard/Dashboard";
-import ErrorPage from "./pages/errors";
-import HomePage from "./pages/home";
+import router from "./routes";
+import { RootState } from "./store";
+import { darkTheme, lightTheme } from "./theme";
 
-function App() {
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <HomePage />,
-      errorElement: <ErrorPage />,
-    },
-    {
-      path: "/home",
-      element: <Dashboard />,
-      errorElement: <ErrorPage />,
-    },
-    {
-      path: "/callback",
-      element: <Callback />,
-    },
-  ]);
+const App = () => {
+  const darkMode: boolean = useSelector(
+    (state: RootState) => state.theme.darkMode
+  );
+
+  const theme = React.useMemo(
+    () => (darkMode ? darkTheme : lightTheme),
+    [darkMode]
+  );
 
   return (
     <React.StrictMode>
-      <RouterProvider router={router} />
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <RouterProvider router={router} />
+      </ThemeProvider>
     </React.StrictMode>
   );
-}
+};
 
 export default App;

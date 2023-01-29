@@ -8,7 +8,7 @@ interface TokenResponse {
   user: unknown;
 }
 
-export default function Callback() {
+const Callback = () => {
   const nav = useNavigate();
 
   return (
@@ -35,4 +35,6 @@ export default function Callback() {
       }}
     />
   );
-}
+};
+
+export default Callback;

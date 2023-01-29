@@ -6,7 +6,7 @@ interface LoginUser {
   name: string;
 }
 
-function HomePage() {
+const HomePage = () => {
   const [user, setUser] = useState<LoginUser>({ name: "" });
 
   useEffect(() => {
@@ -55,6 +55,6 @@ function HomePage() {
   };
 
   return renderContent();
-}
+};
 
 export default HomePage;
